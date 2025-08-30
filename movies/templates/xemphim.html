@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Trang chủ{% endblock %}
+
+{% block content %}
+<div style="width:95vw; border-top:1px solid rgba(255, 255, 255, 0.152);margin-bottom: 2rem;;border-bottom:1px solid rgba(255, 255, 255, 0.152);padding: 0.5rem 0rem;">
+    <a href="" style="text-decoration: none; color: rgb(196, 196, 196);">Trang chủ</a>
+</div>
+<iframe width="640" height="360"
+        src="https://www.youtube.com/embed/{{movie.video_url}}"
+        title="{{movie.title}}"
+        frameborder="0"
+        class="video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+</iframe>
+<div class="FULLHD">
+    <span>#FULL HD 1</span>
+</div>
+<div style="width: 93vw;margin-top: 2rem;">
+    <div style="font-weight: 600; font-weight: 500;font-size: 1.3rem;">Danh sách tập phim</div>
+</div>
+<div class="FULLHD" style="color: #000;font-weight: 500;">
+    <span>FULL </span>
+</div>
+<div class="card" style="width: 93vw;margin-top: 2rem;">
+  <div class="card-header">
+    <h5>Để lại bình luận</h5>
+  </div>
+  <div class="card-body">
+    <form>
+      <div class="mb-3">
+        <label for="comment" class="form-label">Bình luận</label>
+        <textarea class="form-control" id="comment" rows="4" placeholder="Viết bình luận..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Gửi bình luận</button>
+    </form>
+  </div>
+</div>
+<div style="width: 93vw;margin-top: 2rem;">
+    <div style="font-weight: 600; font-weight: 500;font-size: 1.3rem;">Tóm tắt phim</div>
+</div>
+<div style="width: 93vw;margin-top:1rem;">
+    <div style="font-weight: 600; font-weight: 500;font-size: 1rem; color: rgb(190, 190, 190);">{{movie.summary}}</div>
+</div>
+<div style="width: 93vw;margin-top:1rem;">
+<h5 style="color: white; padding-bottom: 0.3rem; border-bottom: 3px solid orange;display: inline-block; font-weight: 600;margin-top: 2rem;">Có thể bạn cũng thích</h5>
+</div>
+<div style="width: 93vw;margin-top:1rem;">
+<div class="multi-item-carousel">
+  {% for movie in movies %}
+  <div class="item">
+  <a href="/xemphim/{{movie.slug}}" style="text-decoration: none;" class="achuaphim">
+    <div class="card" style="width: 12rem; border:none;background-color:black">
+      <img src="{{movie.poster_url}}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">
+      <div class="HD">HD</div>
+      <div class="vietsub">Vietsub</div>
+      <div class="card-body">
+        <p class="card-text" style="margin-top:-1rem; margin-left:-1rem;font-size:0.9rem;color:white; font-weight:500;">{{movie.title}}</p>
+        <p class="card-text" style="margin-top:-1rem; margin-left:-1rem; color:gray;font-size:0.85rem;font-weight:500;">{{movie.titleE}}</p>
+      </div>
+    </div>
+  </a>
+  <i class="fa-solid fa-circle-play" style="color: #FFD43B;"></i>
+</div>
+{% endfor %}
+
+
+</div></div>
+{% endblock %}

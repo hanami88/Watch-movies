@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+
+{% block title %}Trang chủ{% endblock %}
+
+{% block content %}
+<h3 style="color: white; padding-bottom: 0.3rem; border-bottom: 3px solid orange;display: inline-block; font-weight: 600;">Đề cử</h3>
+<div class="multi-item-carousel">
+  {% for movie in movies %}
+    <div class="item">
+  <a href="/xemphim/{{movie.slug}}" style="text-decoration: none;" class="achuaphim">
+    <div class="card" style="width: 12rem; border:none;background-color:black">
+      <img src="{{ movie.poster_url }}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">
+      <div class="HD">HD</div>
+      <div class="vietsub">Vietsub</div>
+      <div class="card-body">
+        <p class="card-text" style="margin-top:-0.8rem;font-size:0.9rem;margin-left:-1rem; color:white; font-weight:500;">{{ movie.title }}</p>
+        <p class="card-text" style="margin-top:-1rem;font-size:0.85rem; margin-left:-1rem; color:gray; font-weight:500;">{{ movie.title }}</p>
+      </div>
+    </div>
+  </a>
+  <i class="fa-solid fa-circle-play" style="color: #FFD43B;"></i>
+</div>
+    {% endfor %}
+</div>
+  <div class="hienthiphim">
+    <div class="container-chuaphim">
+        <div class="btn-group" style="margin-bottom:3rem" role="group" aria-label="Segmented control">
+  <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+  <label class="btn btn-outline-warning" for="option1">Phim bộ mới</label>
+
+  <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+  <label class="btn btn-outline-warning" for="option2">Phim bộ hoàn thành</label>
+
+  <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
+  <label class="btn btn-outline-warning" for="option3">Phim lẻ</label>
+</div>
+       <div class="chuaphim">
+           {% for movie in movies %}
+           {% if movie.type == "HD" %}
+           <a href="/xemphim/{{movie.slug}}" style="text-decoration: none;" class="thephimnoi item">
+          <div class="card" style="width: 12rem; border:none;background-color:black">
+            <img src="{{movie.poster_url}}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">
+            <div class="HD">HD</div>
+            <div class="vietsub">Vietsub</div>
+            <div class="card-body">
+              <p class="card-text" style="margin-top:-1rem; margin-left:-1rem; color:white;font-size:0.9rem; font-weight:500;">{{movie.title}}</p>
+              <p class="card-text" style="margin-top:-1rem; margin-left:-1rem; color:gray;font-size:0.85rem;font-weight:500;">{{movie.titleE}}</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-circle-play" style="color: #FFD43B;"></i>
+          </a>
+           {% endif %}
+           {% endfor %}
+       </div>
+    </div>
+  <div class="bangxephang">
+  <h2 class="text-warning mb-3" style="font-size: 1.2rem;font-weight: 600;width: 18rem;margin-top: 1rem;margin-left: 1rem ;border-bottom: 1px dotted gray; padding-bottom: 1rem;">PHIM HOT TRONG TUẦN</h2>
+  <div class="list-group">
+    <div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div>
+    <div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div>
+    <div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div>
+    <div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div>
+    <div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div>
+    <div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div><div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div><div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div><div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div><div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<h3 style="font-weight: 600; color: white; padding-bottom: 0.3rem; border-bottom: 3px solid orange;display: inline-block;">Phim hành động</h3>
+<div class="hienthiphim">
+    <div class="container-chuaphim">
+       <div class="chuaphim">
+         {% for movie in movies %}
+           {% if movie.type == "HD" %}
+           <a href="/xemphim/{{movie.slug}}" style="text-decoration: none;" class="thephimnoi item">
+          <div class="card" style="width: 12rem; border:none;background-color:black">
+            <img src="{{movie.poster_url}}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">
+            <div class="HD">HD</div>
+            <div class="vietsub">Vietsub</div>
+            <div class="card-body">
+              <p class="card-text" style="margin-top:-1rem; margin-left:-1rem;font-size:0.9rem; color:white; font-weight:500;">{{movie.title}}</p>
+              <p class="card-text" style="margin-top:-1rem; margin-left:-1rem;font-size:0.85rem;color:gray; font-weight:500;">{{movie.titleE}}</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-circle-play" style="color: #FFD43B;"></i>
+          </a>
+           {% endif %}
+           {% endfor %}
+       </div>
+    </div>
+  <div class="bangxephang">
+  <h2 class="text-warning mb-3" style="font-size: 1.2rem;font-weight: 600;width: 18rem;margin-top: 1rem;margin-left: 1rem ;border-bottom: 1px dotted gray; padding-bottom: 1rem;">ĐÁNH GIÁ CAO</h2>
+  <div class="list-group">
+    <div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div>
+    <div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div>
+
+    <div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div>
+    <div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div>
+    <div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div><div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div><div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div><div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div><div class="bangxephang-item">
+      <div>1</div>
+      <div class="bangxephang-item-box">
+        <div>Cẩm Như Nguyệt Ca</div>
+        <div>100,000 lượt xem</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<h3 style="font-weight: 600; color: white; padding-bottom: 0.3rem; border-bottom: 3px solid orange;display: inline-block;">Phim hoạt hình</h3>
+<div class="hienthiphim">
+    <div class="container-chuaphim">
+       <div class="chuaphim">
+         {% for movie in movies %}
+           {% if movie.type == "HH" %}
+           <a href="/xemphim/{{movie.slug}}" style="text-decoration: none;" class="thephimnoi item">
+          <div class="card" style="width: 12rem; border:none;background-color:black">
+            <img src="{{movie.poster_url}}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">
+            <div class="HD">HD</div>
+            <div class="vietsub">Vietsub</div>
+            <div class="card-body">
+              <p class="card-text" style="margin-top:-1rem; margin-left:-1rem;font-size:0.9rem;color:white; font-weight:500;">{{movie.title}}</p>
+              <p class="card-text" style="margin-top:-1rem; margin-left:-1rem;font-size:0.85rem; color:gray; font-weight:500;">{{movie.titleE}}</p>
+            </div>
+          </div>
+          <i class="fa-solid fa-circle-play" style="color: #FFD43B;"></i>
+          </a>
+           {% endif %}
+           {% endfor %}
+       </div>
+    </div>
+</div>
+{% endblock %}

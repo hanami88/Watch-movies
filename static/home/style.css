@@ -1,0 +1,236 @@
+body {
+  background-color: #000;
+}
+.multi-item-carousel .item {
+  width: 12rem;
+  margin: 0 7px;
+}
+.HD {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: orange;
+  color: black;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+.vietsub {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+.hienthiphim {
+  display: flex;
+  justify-content: space-between;
+}
+.chuaphim {
+  width: 65rem;
+  height: 44rem;
+  flex-wrap: wrap;
+  height: auto;
+  display: flex;
+}
+.chuaphim a {
+  margin-right: 1rem;
+}
+.container-chuaphim {
+  width: 65rem;
+}
+.bangxephang {
+  width: 20rem;
+  background-color: rgba(27, 29, 35, 0.5);
+  border-radius: 0.5rem;
+}
+.fa-circle-play {
+  position: absolute;
+  top: 8rem;
+  font-size: 2.5rem;
+  left: 4.5rem;
+  color: orange;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  opacity: 0;
+}
+.item {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.item:hover .fa-circle-play {
+  opacity: 1;
+}
+.thephimnoi {
+  &:hover {
+    transform: scale(1.03);
+  }
+}
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #000 !important;
+}
+.dropdown-menu a {
+  font-weight: 500;
+  &:hover {
+    color: orange !important;
+    background-color: #000;
+  }
+}
+.dropdown-menu {
+  background: #151515;
+  border: 1px solid rgb(96, 96, 96);
+}
+.motchill {
+  width: 9rem;
+}
+.btn-check {
+  &:checked {
+    background-color: orange !important;
+  }
+}
+.bangxephang-item {
+  display: flex;
+  align-items: center;
+  border-radius: 0.2rem;
+  height: 3.5rem;
+  width: 90%;
+  margin-left: 1rem;
+  background-color: rgba(255, 255, 255, 0.155);
+  margin-bottom: 1rem;
+}
+.bangxephang-item > :nth-child(1) {
+  border-radius: 50%;
+  color: white;
+  background: orange;
+  height: 1.7rem;
+  width: 1.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  margin-left: 1rem;
+}
+.bangxephang-item-box > :nth-child(1) {
+  font-weight: 600;
+  color: white;
+  font-size: 0.9rem;
+}
+.bangxephang-item-box > :nth-child(2) {
+  font-weight: 500;
+  color: gray;
+  font-size: 0.8rem;
+}
+.bangxephang-item-box {
+  margin-left: 0.8rem;
+}
+.container-footer > :nth-child(1) {
+  display: flex;
+  justify-content: space-between;
+  width: 98vw;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.152);
+  padding-bottom: 1rem;
+}
+.container-footer {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.152);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+.footer-box {
+  margin: 0 5rem;
+}
+.footer-box > :nth-child(1) {
+  font-size: 1.3rem;
+  color: white;
+  font-weight: 600;
+}
+.footer-box div {
+  margin-top: 0.5rem;
+  color: rgb(150, 150, 150);
+  font-size: 1rem;
+}
+.container-footer > :nth-child(2) {
+  color: rgb(150, 150, 150);
+  width: 90vw;
+  margin-top: 1rem;
+}
+.video {
+  width: 93vw;
+  height: 90vh;
+  border-radius: 0.7rem;
+}
+.FULLHD > :nth-child(1) {
+  padding: 0.4rem 1rem;
+  font-family: 600;
+  background-color: rgb(255, 126, 8);
+
+  font-size: 0.8rem;
+  border-radius: 0.5rem;
+}
+.FULLHD {
+  width: 93vw;
+  margin-top: 1rem;
+}
+.anhnen {
+  width: 98vw;
+  height: 120vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container-login {
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 35vw;
+  height: 90vh;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(86, 86, 86);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login {
+  width: 80%;
+}
+.text-box {
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 0.3rem;
+  height: 3.5rem;
+  color: white;
+  &::placeholder {
+    color: rgb(180, 180, 180);
+  }
+  padding-left: 1.2rem;
+  &:focus {
+    outline: 1px solid white; /* outline trắng */
+    box-shadow: none; /* bỏ hiệu ứng xanh */
+    border-color: white;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+  }
+}
+.btn-login:hover {
+  background-color: rgb(161, 0, 9) !important;
+}
+.imghover {
+  width: 192px ;
+  height: 288px ;
+}
+.card-text {
+  white-space: nowrap; /* không xuống dòng */
+  overflow: hidden; /* ẩn phần tràn */
+  text-overflow: ellipsis; /* hiện dấu ... */
+  width: 175px;
+}

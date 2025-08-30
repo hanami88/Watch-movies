@@ -1,0 +1,107 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+   <link rel="stylesheet" href="{% static 'home/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <title>Home</title>
+</head>
+<body>
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand mx-3" href="#"><img src="{% static 'home/image/motchill.png' %}" alt="" class="motchill"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item mx-3"><a class="nav-link" style="color: white;font-weight: 500;" href="#">Phim Lẻ</a></li>
+        <li class="nav-item mx-3"><a class="nav-link" style="color: white;font-weight: 500;" href="#">Phim Bộ</a></li>
+        <li class="nav-item dropdown mx-3">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;font-weight: 500;">Thể loại</a>
+          <ul class="dropdown-menu" style="background: #000;color: white;">
+            <li><a class="dropdown-item" style="color: white;" href="#">Hành động</a></li>
+            <li><a class="dropdown-item" style="color: white;" href="#">Cổ Trang</a></li>
+            <li><a class="dropdown-item" style="color: white;" href="#">Tình Cảm</a></li>
+            <li><a class="dropdown-item" style="color: white;" href="#">Kinh Dị</a></li>
+            <li><a class="dropdown-item" style="color: white;" href="#">Phiêu Lưu</a></li>
+            <li><a class="dropdown-item" style="color: white;" href="#">Viễn Tưởng</a></li>
+          </ul>
+        </li>
+        <li class="nav-item mx-3"><a class="nav-link" href="#" style="color: white;font-weight: 500;">Hoạt Hình</a></li>
+      </ul>
+      <form class="d-flex me-3" role="search">
+        <input class="form-control me-2 " type="search" placeholder="Tìm kiếm phim " aria-label="Search">
+      </form>
+      <a href="/loginpage " class="btn btn-outline-warning mx-4">
+        <i class="bi bi-person-circle"></i> Đăng nhập
+      </a>
+    </div>
+  </div>
+</nav>
+   <main class="container my-4">
+        {% block content %}{% endblock %}
+    </main>
+   <footer>
+  <div class="container-footer">
+    <div>
+      <div class="footer-box">
+        <div>Motchill About</div>
+        <div>Giới thiệu</div>
+        <div>FAQ</div>
+      </div>
+      <div class="footer-box">
+        <div>Trợ giúp</div>
+        <div>Liên hệ</div>
+        <div>Điều khoản sử dụng</div>
+        <div>Chính sách bảo mật</div>
+      </div>
+      <div class="footer-box">
+        <div>Sitemap</div>
+        <div>Sitemap Motchill</div>
+        <div>RSS Feed Phim Mới</div>
+      </div>
+      <div class="footer-box">
+        <div>Kết nối</div>
+        <div>
+          <i class="fa-brands fa-square-facebook"></i>
+          <i class="fa-brands fa-twitter"></i>
+          <i class="fa-brands fa-youtube"></i>
+        </div>
+      </div>
+    </div>
+    <div>Xem phim mới miễn phí chất lượng cao - với hơn 10.000+ bộ phim đầy đủ thể loại và nội dung phong phú, đặc sắc và hấp dẫn, được cập nhật nhanh chóng. Mọt Chill mang lại giao diện thân thiện, tốc độ tải nhanh, trải nghiệm tốt nhất cho người dùng.</div>
+  </div>
+</footer>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+ <script>
+   $(document).ready(function(){
+  $('.multi-item-carousel').slick({
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    variableWidth: true,
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 2 } },
+      { breakpoint: 600,  settings: { slidesToShow: 1 } }
+    ]
+  });
+});
+</script>
+</body>
+</html>
