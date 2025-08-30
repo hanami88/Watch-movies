@@ -66,7 +66,7 @@ def login(request):
                 messages.success(request, "Đăng nhập thành công (User)")
                 return render(request, "loginpage.html")   # chuyển sang trang user
         else:
-            messages.error(request, "Mật khẩu không đúng")
+            messages.error(request, "Mật khẩu cặc")
             return render(request, "loginpage.html")
     else:
         return render(request, "loginpage.html")
