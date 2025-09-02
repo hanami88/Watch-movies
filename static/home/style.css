@@ -170,10 +170,9 @@ body {
   border-radius: 0.7rem;
 }
 .FULLHD > :nth-child(1) {
-  padding: 0.4rem 1rem;
-  font-family: 600;
+  padding: 0.65rem 1rem;
+  font-weight: 600;
   background-color: rgb(255, 126, 8);
-
   font-size: 0.8rem;
   border-radius: 0.5rem;
 }
@@ -233,4 +232,88 @@ body {
   overflow: hidden; /* ẩn phần tràn */
   text-overflow: ellipsis; /* hiện dấu ... */
   width: 175px;
+}
+.container-thongtin {
+  display: flex;
+  border: 1px solid gray;
+  border-radius: 0.5rem;
+  background-color: #25252581;
+  flex-direction: column;
+}
+.thongtinhoten {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid gray;
+  width: 45vw;
+  padding-right: 4rem;
+  color: white;
+  margin-top: 2rem;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+}
+.thongtinhoten > input[type="text"],
+input[type="date"],
+select {
+  width: 37vw;
+  height: 8vh;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+  font-size: 1.2rem;
+  background-color: #000;
+  color: white;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+.thongtinhoten1 > input[type="text"],
+input[type="date"],
+select {
+  width: 37vw;
+  height: 8vh;
+  border-radius: 0.3rem;
+  border: 1px solid gray;
+  font-size: 1.2rem;
+  background-color: #000;
+  color: white;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+}
+.thongtinhoten1 {
+  display: flex;
+  flex-direction: column;
+  width: 40vw;
+  color: white;
+  margin-top: 2rem;
+  margin-left: 5rem;
+}
+.like-toggle {
+  cursor: pointer;
+  border: 2px solid #ff4757;
+  border-radius: 25px;
+  padding: 6px 16px;
+  color: #ff4757;
+  transition: 0.3s;
+}
+
+#like:checked + .like-toggle {
+  background: #ff4757;
+  color: white;
+}
+.btn-like {
+  border: 2px solid #ff4757;
+  background: transparent;
+  border-radius: 25px;
+  padding: 6px 16px;
+  color: #ff4757;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.btn-like.liked {
+  background: #ff4757;
+  color: white;
+}
+
+.btn-like i {
+  margin-right: 5px;
 }

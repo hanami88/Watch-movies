@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Thông tin{% endblock %}
+{% block content %}
+<h3 style="color: white; font-weight: 600; margin-bottom:1rem;">Thông tin cá nhân</h3>
+<div class="container-thongtin">
+    <form action="/user/save" method="POST">
+        {% csrf_token %}
+        <div style="display: flex;">
+      <div class="thongtinhoten">
+          <label for="name" style="font-size: 1rem;margin-bottom: 0.5rem;">Họ tên</label>
+          <input type="text" name="name" id="name" value="{{user.name}}">
+          <label for="birthday" style="font-size: 1rem;margin-bottom: 0.5rem;">Ngày sinh</label>
+          <input type="date" name="birthday" id="birthday" value="{{ user.birthday|date:'Y-m-d' }}">
+          <label for="gender" style="font-size: 1rem;margin-bottom: 0.5rem;">Giới tính</label>
+          <select name="gender" id="gender">
+              <option value="">Chọn giới tính</option>
+              <option value="M" {% if user.gender == 'M' %}selected{% endif %}>Nam</option>
+              <option value="F" {% if user.gender == 'F' %}selected{% endif %}>Nữ</option>
+          </select>
+      </div>
+      <div class="thongtinhoten1">
+          <label for="sdt" style="font-size: 1rem;margin-bottom: 0.5rem;">Số điện thoại</label>
+          <input type="text" name="sdt" id="sdt" value="{{user.sdt}}">
+          <label for="email" style="font-size: 1rem;margin-bottom: 0.5rem;">Email</label>
+          <input type="text" name="email" id="email"  value="{{user.email}}">
+      </div>
+    </div>
+   <button style="width: 10rem;margin-left: 36rem;margin-top:1rem;border-radius: 0.5rem;height: 3rem;border: none;background-color: rgb(126, 126, 126);font-weight: 500;margin-bottom: 2rem;">Lưu thay đổi</button>
+    </form>
+</div>
+  <h3 style="color: white; font-weight: 600; margin-top: 2rem;">Phim yêu thích</h3>
+  <div class="multi-item-carousel" style="margin-top: 2rem;">
+{% for movie in user_favorites %}
+    <div class="item">
+  <a href="/xemphim/{{movie.slug}}" style="text-decoration: none;" class="achuaphim">
+    <div class="card" style="width: 12rem; border:none;background-color:black">
+      <img src="{{ movie.poster_url }}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">
+      <div class="HD">HD</div>
+      <div class="vietsub">Vietsub</div>
+      <div class="card-body">
+        <p class="card-text" style="margin-top:-0.8rem;font-size:0.9rem;margin-left:-1rem; color:white; font-weight:500;">{{ movie.title }}</p>
+        <p class="card-text" style="margin-top:-1rem;font-size:0.85rem; margin-left:-1rem; color:gray; font-weight:500;">{{ movie.title }}</p>
+      </div>
+    </div>
+  </a>
+  <i class="fa-solid fa-circle-play" style="color: #FFD43B;"></i>
+</div>
+    {% endfor %}
+</div>
+{% endblock %}

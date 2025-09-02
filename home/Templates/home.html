@@ -56,72 +56,15 @@
   <div class="bangxephang">
   <h2 class="text-warning mb-3" style="font-size: 1.2rem;font-weight: 600;width: 18rem;margin-top: 1rem;margin-left: 1rem ;border-bottom: 1px dotted gray; padding-bottom: 1rem;">PHIM HOT TRONG TUẦN</h2>
   <div class="list-group">
+    {% for movie in movies_list %}
     <div class="bangxephang-item">
-      <div>1</div>
+      <div>{{ forloop.counter }}</div>
       <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
+        <div>{{ movie.title }}</div>
+        <div>{{ movie.views }} lượt xem</div>
       </div>
     </div>
-    <div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div>
-    <div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div>
-    <div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div>
-    <div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div>
-    <div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div><div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div><div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div><div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div><div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 </div>
 </div>

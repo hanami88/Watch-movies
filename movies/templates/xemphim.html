@@ -14,11 +14,19 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
 </iframe>
-<div class="FULLHD">
+<div class="FULLHD" style="display:flex;witdh:88vw;justify-content:space-between;">
     <span>#FULL HD 1</span>
+ <button class="btn-like" data-movie="{{ movie.id }}">
+  {% if movie in user_favorites %}
+    <i class="bi bi-heart-fill"></i> Bỏ thích
+  {% else %}
+    <i class="bi bi-heart"></i> Thích
+  {% endif %}
+</button>
+  <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
 </div>
 <div style="width: 93vw;margin-top: 2rem;">
-    <div style="font-weight: 600; font-weight: 500;font-size: 1.3rem;">Danh sách tập phim</div>
+    <div style="font-weight: 600; font-weight: 500;font-size: 1.3rem;color:white">Danh sách tập phim</div>
 </div>
 <div class="FULLHD" style="color: #000;font-weight: 500;">
     <span>FULL </span>
@@ -38,7 +46,7 @@
   </div>
 </div>
 <div style="width: 93vw;margin-top: 2rem;">
-    <div style="font-weight: 600; font-weight: 500;font-size: 1.3rem;">Tóm tắt phim</div>
+    <div style="font-weight: 600; font-weight: 500;font-size: 1.3rem;color:white">Tóm tắt phim</div>
 </div>
 <div style="width: 93vw;margin-top:1rem;">
     <div style="font-weight: 600; font-weight: 500;font-size: 1rem; color: rgb(190, 190, 190);">{{movie.summary}}</div>
@@ -65,6 +73,62 @@
 </div>
 {% endfor %}
 
-
 </div></div>
+<script>
+document.querySelectorAll('.btn-like').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const movieId = this.dataset.movie;
+        const csrftoken = document.getElementById('csrf-token').value;
+        const button = this;
+        fetch("/xemphim/thich", {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrftoken,
+                'X-Requested-With': 'XMLHttpRequest',
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({movie_id: movieId})
+        })
+        .then(response => {
+            console.log('Response status:', response.status);
+            console.log('Response headers:', response.headers.get('content-type'));
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            // Kiểm tra content-type
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                return response.text().then(text => {
+                    console.log('Server trả về HTML thay vì JSON:', text);
+                    throw new Error('Server không trả về JSON');
+                });
+            }
+
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+            if (data.error) {
+                alert(data.error);
+                return;
+            }
+            if (data.liked) {
+                button.innerHTML = '<i class="bi bi-heart-fill"></i> Bỏ thích';
+                button.classList.add('liked');
+            } else {
+                button.innerHTML = '<i class="bi bi-heart"></i> Thích';
+                button.classList.remove('liked');
+            }
+        })
+        .catch(err => {
+            console.error('Fetch error:', err);
+            alert('Có lỗi xảy ra: ' + err.message);
+        });
+    });
+});
+</script>
+
 {% endblock %}

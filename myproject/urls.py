@@ -18,5 +18,6 @@ from django.contrib import admin
 from django.urls import path,include
 urlpatterns = [
     path('', include('home.urls')),
-    path('xemphim/', include('movies.urls'))
+    path('xemphim/', include('movies.urls')),
+    path('user/', include('users.urls')),
 ]

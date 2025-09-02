@@ -2,6 +2,6 @@ from django.contrib import admin
 from django.urls import path
 from . import views
 urlpatterns = [
-    path("thich", views.thich),
-    path("<slug:slug>", views.xemphim),
+    path("information", views.information),
+    path("save", views.save),
 ]
