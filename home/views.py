@@ -65,7 +65,7 @@ def login(request):
             else:
                 return render(request,"information.html",{"user":user})
         else:
-            messages.error(request, "Mật khẩu không đúng")
+            messages.error(request, "Mật khẩu cặc")
             return render(request, "loginpage.html")
 
     return render(request, "loginpage.html")
