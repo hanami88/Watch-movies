@@ -1,0 +1,157 @@
+{% extends "admin_base.html" %}
+{% block title %}Thông tin{% endblock %}
+{% block content %}
+<style>
+    .table-container {
+  max-height: 38rem;
+  overflow-y: auto;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+}
+.table-container table th,
+.table-container table td {
+  text-align: center;      /* căn giữa ngang */
+  vertical-align: middle;  /* căn giữa dọc */
+}
+.table-container thead th {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: #212529; /* cùng màu .table-dark */
+  color: #fff;
+
+}
+.btn-warning{
+    margin-right: 0.5rem;
+}
+  </style>
+    <div class="container py-4">
+      <h2>🎬 Quản lý phim</h2>
+      <div class="card shadow-sm mb-4 p-3">
+        <h5>Danh sách phim</h5>
+       <div class="table-container" style="margin-bottom: 1.5rem;">
+  <table class="table table-bordered table-hover align-middle mb-0">
+    <thead class="table-dark">
+      <tr>
+        <th style="position: sticky; top: -1px; z-index: 5; background: #212529; color: #fff;">STT</th>
+        <th style="position: sticky; top: -1px; z-index: 5; background: #212529; color: #fff;">Tên phim (VN)</th>
+        <th style="position: sticky; top: -1px; z-index: 5; background: #212529; color: #fff;">Tên phim (EN)</th>
+        <th style="position: sticky; top: -1px; z-index: 5; background: #212529; color: #fff;">Ngày phát hành</th>
+        <th style="position: sticky; top: -1px; z-index: 5; background: #212529; color: #fff;">Thể loại</th>
+        <th style="position: sticky; top: -1px; z-index: 5; background: #212529; color: #fff;">Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for movie in movies %}
+      <tr>
+        <td>{{movie.id}}</td>
+        <td>{{movie.title}}</td>
+        <td>{{movie.titleE}}</td>
+        <td>{{ movie.release_date|date:"d/m/Y" }}</td>
+        <td>{{movie.type}}</td>
+        <td>
+          <a href="/admin/update_phim_page/{{movie.slug}}" class="btn btn-sm btn-warning">
+            <i class="fa-solid fa-pen"></i>
+          </a>
+          <button class="btn btn-sm btn-danger"
+                onclick="showConfirmModal('{{movie.slug}}','{{movie.title}}')">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+         <div id="confirmModal" style="display:none;
+     position:fixed; top:0; left:0; right:0; bottom:0;
+     background:rgba(0,0,0,0.5);
+     justify-content:center; align-items:center; z-index:9999;">
+  <div style="background:#fff; padding:20px; border-radius:8px; width:350px; text-align:center;">
+    <h5>⚠️ Xác nhận xoá</h5>
+    <p id="confirmText"></p>
+    <div style="margin-top:15px;">
+      <button class="btn btn-secondary" onclick="closeConfirmModal()">Huỷ</button>
+      <a id="confirmDeleteBtn" class="btn btn-danger">Xoá</a>
+    </div>
+  </div>
+</div>
+</div>
+      <div class="card p-4 shadow-sm bg-white">
+        <h5>Thêm phim mới</h5>
+        <form method="POST" action="/admin/addphim">
+          {% csrf_token %}
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="title">Tên phim (Tiếng Việt)</label>
+              <input type="text" class="form-control" name="title" id="title"/>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="titleE">Tên phim (Tiếng Anh)</label>
+              <input type="text" class="form-control" name="titleE" id="titleE"/>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Tóm tắt</label>
+            <textarea class="form-control" rows="3" name="summary" id="summary"></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Poster URL</label>
+            <input type="text" class="form-control" placeholder="https://..." name="poster_url" id="poster_url"/>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Code video</label>
+              <input type="text" class="form-control" name="video_url" id="video_url"/>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Ngày phát hành</label>
+              <input type="date" class="form-control" name="release_date" id="release_date"/>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="type">Loại phim</label>
+            <select class="form-select" name="type" id="type">
+              <option value="">--- Loại phim ---</option>
+              <option value="1">Hành động</option>
+              <option value="2">Tình cảm</option>
+              <option value="3">Kinh dị</option>
+              <option value="4">Hoạt hình</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i> Thêm phim
+          </button>
+        </form>
+      </div>
+    </div>
+    </div>
+<div class="modal fade" id="deleteModal{{ movie.id }}" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title">Xác nhận xoá</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Bạn có chắc chắn muốn xoá phim <b>{{ movie.title }}</b> không?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+        <a href="/admin/delete_phim/{{ movie.slug }}" class="btn btn-danger">Xoá</a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  function showConfirmModal(slug, title) {
+    document.getElementById("confirmText").innerText =
+      "Bạn có chắc chắn muốn xoá phim: " + title + " ?";
+    document.getElementById("confirmDeleteBtn").href = "/admin/delete_phim/" + slug;
+    document.getElementById("confirmModal").style.display = "flex";
+  }
+
+  function closeConfirmModal() {
+    document.getElementById("confirmModal").style.display = "none";
+  }
+</script>
+{% endblock %}

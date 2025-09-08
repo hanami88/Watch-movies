@@ -1,0 +1,314 @@
+{% extends "admin_base.html" %}
+{% block title %}Thông tin{% endblock %}
+{% block content %}
+<style>
+      .table-container {
+        max-height: 40rem;
+        overflow-y: auto;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+      }
+
+      .table-container thead th {
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        background: #212529; /* màu header */
+        color: #fff;
+        text-align: center;
+      }
+
+      .table-container table th,
+      .table-container table td {
+        text-align: center;
+        vertical-align: middle;
+      }
+    </style>
+<div class="container py-4">
+      <h2>👤 Quản lý người dùng</h2>
+      <div class="card shadow-sm p-3 bg-white">
+        <div class="table-container">
+          <table class="table table-bordered table-hover align-middle mb-0">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Email</th>
+                <th>Quyền</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>Nguyễn Văn A</td>
+                <td>a@example.com</td>
+                <td>User</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Admin</td>
+                <td>admin@example.com</td>
+                <td>Admin</td>
+                <td>
+                  <button class="btn btn-sm btn-warning">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+              <!-- Thêm nhiều user khác -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+{% endblock %}

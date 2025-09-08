@@ -317,3 +317,7 @@ select {
 .btn-like i {
   margin-right: 5px;
 }
+.container-comment{
+ max-height:17rem;
+ overflow:auto;
+}

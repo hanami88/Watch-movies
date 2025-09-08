@@ -30,5 +30,15 @@ class UsersFavoriteMovies(models.Model):
     def __str__(self):
         return f"{getattr(self.user, 'name', 'Unknown')} ❤️ {getattr(self.movie, 'title', 'Unknown')}"
 
+class UsersCommentMovies(models.Model):
+    user = models.ForeignKey(Users, on_delete=models.CASCADE, related_name="movie_comments")
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name="comments")
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        db_table = "users_comment_movies"
+        ordering = ["-created_at"]
+    def __str__(self):
+        return f"{self.user.name} - {self.movie.title}: {self.content[:30]}"
 
 

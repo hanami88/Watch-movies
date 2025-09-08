@@ -26,3 +26,4 @@ def save(request):
         return redirect("/user/information")  # quay lại trang thông tin
     # Nếu không phải POST thì quay về trang trước
     return redirect(request.META.get("HTTP_REFERER", "/"))
+

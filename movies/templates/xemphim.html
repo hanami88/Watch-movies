@@ -22,26 +22,42 @@
   {% else %}
     <i class="bi bi-heart"></i> Thích
   {% endif %}
-</button>
+  </button>
   <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
 </div>
 <div style="width: 93vw;margin-top: 2rem;">
     <div style="font-weight: 600; font-weight: 500;font-size: 1.3rem;color:white">Danh sách tập phim</div>
 </div>
 <div class="FULLHD" style="color: #000;font-weight: 500;">
-    <span>FULL </span>
+    <span>FULL</span>
 </div>
 <div class="card" style="width: 93vw;margin-top: 2rem;">
   <div class="card-header">
     <h5>Để lại bình luận</h5>
   </div>
   <div class="card-body">
-    <form>
+      {% for comment in comments %}
+<div class="container-comment">
+  <div class="d-flex align-items-start mb-3">
+    <i class="fas fa-user-circle fa-3x me-3 text-secondary"></i>
+    <div>
+      <h6 class="mb-1">
+        {{ comment.user.name }}
+        <small class="text-muted">- {{ comment.created_at|date:"d/m/Y H:i" }}</small>
+      </h6>
+      <p class="mb-0">{{ comment.content }}</p>
+    </div>
+  </div>
+  <hr>
+</div>
+{% endfor %}
+    <form class="form-comment" action="/xemphim/{{movie.slug}}/comment" method="POST">
+        {% csrf_token %}
       <div class="mb-3">
         <label for="comment" class="form-label">Bình luận</label>
-        <textarea class="form-control" id="comment" rows="4" placeholder="Viết bình luận..."></textarea>
+        <textarea class="form-control" id="comment"  rows="4" name="comment" placeholder="Viết bình luận..."></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Gửi bình luận</button>
+      <button type="submit" class="btn btn-primary btn-submit" disabled>Gửi bình luận</button>
     </form>
   </div>
 </div>
@@ -129,6 +145,15 @@ document.querySelectorAll('.btn-like').forEach(btn => {
         });
     });
 });
+    document.addEventListener("DOMContentLoaded", function () {
+    const textarea = document.getElementById("comment");
+    const submitBtn = document.querySelector(".form-comment .btn-submit");
+
+    // Lắng nghe sự kiện gõ phím
+    textarea.addEventListener("input", function () {
+      submitBtn.disabled = textarea.value.trim().length === 0;
+    });
+  });
 </script>
 
 {% endblock %}

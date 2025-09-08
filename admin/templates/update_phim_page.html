@@ -1,0 +1,86 @@
+{% extends "admin_base.html" %}
+{% block title %}Thông tin{% endblock %}
+{% block content %}
+<div class="container py-4">
+      <h2>🎬 Sửa thông tin phim</h2>
+      <div class="card shadow-sm p-4 bg-white">
+        <form method="POST" action="/admin/update_phim/{{movie.slug}}">
+            {% csrf_token %}
+          <div class="mb-3">
+            <label class="form-label">Tên phim (Tiếng Việt)</label>
+            <input
+              type="text"
+              class="form-control"
+              value="{{movie.title}}"
+              name="title"
+              id="title"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Tên phim (Tiếng Anh)</label>
+            <input
+              type="text"
+              class="form-control"
+              value="{{movie.titleE}}"
+              required
+              name="titleE"
+              id="titleE"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Tóm tắt</label>
+            <textarea class="form-control" rows="3" required name="summary"
+              id="summary">
+{{movie.summary}}</textarea
+            >
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Poster URL</label>
+            <input
+              type="url"
+              class="form-control"
+              value="{{movie.poster_url}}"
+              name="poster_url"
+              id="poster_url"
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Code Video</label>
+            <input type="text" class="form-control" value="{{movie.video_url}}" name="video_url"
+              id="video_url" />
+          </div>
+
+          <div class="mb-3">
+  <label class="form-label">Ngày phát hành</label>
+  <input type="date" class="form-control"
+         value="{{ movie.release_date|date:'Y-m-d' }}"
+         name="release_date" id="release_date"/>
+</div>
+          <div class="mb-3">
+  <div class="mb-3">
+  <label class="form-label">Loại phim</label>
+  <select class="form-select" name="category">
+    <option value="1" {% if movie.type == 1 %}selected{% endif %}>Hành động</option>
+    <option value="2" {% if movie.type == 2 %}selected{% endif %}>Tình cảm</option>
+    <option value="3" {% if movie.type == 3 %}selected{% endif %}>Kinh dị</option>
+    <option value="4" {% if movie.type == 4 %}selected{% endif %}>Hoạt hình</option>
+  </select>
+</div>
+          <div class="mt-4">
+            <button type="submit" class="btn btn-success">
+              <i class="fa-solid fa-save"></i> Lưu thay đổi
+            </button>
+            <a href="/admin/addphim_page" class="btn btn-secondary">
+              <i class="fa-solid fa-arrow-left"></i> Quay lại
+            </a>
+          </div>
+          </div>
+        </form>
+      </div>
+    </div>
+{% endblock %}

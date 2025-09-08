@@ -12,12 +12,12 @@ class Movie(models.Model):
     views = models.IntegerField(default=0)
     nomination = models.BooleanField(default=False)
     type=models.CharField(max_length=255,default="No Title")
-    slug = models.SlugField(unique=True, blank=True, null=True)
-
+    slug = models.SlugField(unique=True, blank=True, null=True, max_length=255)
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = f"{slugify(self.title)}-{self.year}"
+            year = self.release_date.year if self.release_date else ""
+            self.slug = f"{slugify(self.title)}-{year}"
         super().save(*args, **kwargs)
 
     def __str__(self):
