@@ -57,15 +57,14 @@ def login(request):
             messages.error(request, "Email không tồn tại")
             return render(request, "loginpage.html")
         if password==user.password:
-            # Lưu token vào session (hoặc cookies)
             request.session["user_id"] = user.id
             request.session["is_superuser"] = user.is_superuser
             if user.is_superuser:
-                return redirect("admin_dashboard")
+                return redirect("/admin/addphim")
             else:
-                return render(request,"information.html",{"user":user})
+                return redirect("/user/information")
         else:
-            messages.error(request, "Mật khẩu cặc")
+            messages.error(request, "Mật khẩu không đúng")
             return render(request, "loginpage.html")
 
     return render(request, "loginpage.html")

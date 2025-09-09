@@ -43,18 +43,18 @@
       </form>
         {% if user %}
   <div class="dropdown mx-4">
-    <a class="btn btn-outline-warning dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="btn btn-outline-warning dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
       <i class="bi bi-person-circle"></i> Chào, {{ user.name }}
     </a>
     <ul class="dropdown-menu dropdown-menu-end">
-      <li><a class="dropdown-item" href="/user/information" style="color:white">Thông tin cá nhân</a></li>
-      <li><a class="dropdown-item" href="/user/change-password" style="color:white">Đổi mật khẩu</a></li>
+      <li><a class="dropdown-item" href="/user/information">Thông tin cá nhân</a></li>
+      <li><a class="dropdown-item" href="/user/change-password">Đổi mật khẩu</a></li>
       <li><hr class="dropdown-divider"></li>
       <li><a class="dropdown-item text-danger" href="/logout">Đăng xuất</a></li>
     </ul>
   </div>
 {% else %}
-  <a href="/loginpage" class="btn btn-outline-warning mx-4">
+  <a href="/login" class="btn btn-outline-warning mx-4">
     <i class="bi bi-person-circle"></i> Đăng nhập
   </a>
 {% endif %}

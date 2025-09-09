@@ -4,81 +4,84 @@
 <div class="container py-4">
       <h2>✏️ Sửa thông tin người dùng</h2>
       <div class="card shadow-sm p-4 bg-white">
-        <form>
-          <!-- Thông tin cơ bản -->
-          <h5 class="mb-3">Thông tin cơ bản</h5>
-          <div class="mb-3">
-            <label class="form-label">Tên</label>
-            <input
-              type="text"
-              class="form-control"
-              value="Nguyễn Văn A"
-              required
-            />
-          </div>
+       <form method="post" onsubmit="return checkPasswordMatch()">
+  {% csrf_token %}
+  <h5 class="mb-3">Thông tin cơ bản</h5>
 
-          <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input
-              type="email"
-              class="form-control"
-              value="a@example.com"
-              required
-            />
-          </div>
+  <div class="mb-3">
+    <label class="form-label">Tên</label>
+    <input type="text" class="form-control" name="name" value="{{ user.name }}" required />
+  </div>
 
-          <div class="mb-3">
-            <label class="form-label">Quyền</label>
-            <select class="form-select">
-              <option>User</option>
-              <option selected>Admin</option>
-            </select>
-          </div>
+  <div class="mb-3">
+    <label class="form-label">Email</label>
+    <input type="email" class="form-control" name="email" value="{{ user.email }}" required />
+  </div>
 
-          <hr />
+  <div class="mb-3">
+    <label class="form-label">Ngày sinh</label>
+    <input type="date" class="form-control" name="birthday" value="{{ user.birthday|date:'Y-m-d' }}" required />
+  </div>
 
-          <!-- Nút mở form đổi mật khẩu -->
-          <button
-            class="btn btn-outline-primary mb-3"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#passwordForm"
-          >
-            <i class="fa-solid fa-key"></i> Đổi mật khẩu
-          </button>
+  <div class="mb-3">
+    <label class="form-label">Giới tính</label>
+    <select class="form-select" name="gender" required>
+      <option value="M" {% if user.gender == "M" %}selected{% endif %}>Nam</option>
+      <option value="F" {% if user.gender == "F" %}selected{% endif %}>Nữ</option>
+      <option value="O" {% if user.gender == "O" %}selected{% endif %}>Khác</option>
+    </select>
+  </div>
 
-          <!-- Form đổi mật khẩu (ẩn mặc định) -->
-          <div class="collapse" id="passwordForm">
-            <h5 class="mb-3">Đổi mật khẩu</h5>
-            <div class="mb-3">
-              <label class="form-label">Mật khẩu mới</label>
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Nhập mật khẩu mới"
-              />
-            </div>
+  <hr />
+  <!-- Nút mở form đổi mật khẩu -->
+  <button class="btn btn-outline-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#passwordForm">
+    <i class="fa-solid fa-key"></i> Đổi mật khẩu
+  </button>
 
-            <div class="mb-3">
-              <label class="form-label">Xác nhận mật khẩu</label>
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Xác nhận mật khẩu"
-              />
-            </div>
-          </div>
+  <!-- Form đổi mật khẩu -->
+  <div class="collapse" id="passwordForm">
+    <h5 class="mb-3">Đổi mật khẩu</h5>
+    <div class="mb-3">
+      <label class="form-label">Mật khẩu mới</label>
+      <input type="password" class="form-control" id="new_password" name="new_password" placeholder="Nhập mật khẩu mới" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Xác nhận mật khẩu</label>
+      <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Xác nhận mật khẩu" />
+    </div>
+    <div class="text-danger" id="passwordError" style="display:none;">
+      ❌ Mật khẩu xác nhận không khớp
+    </div>
+  </div>
 
-          <div class="mt-4">
-            <button type="submit" class="btn btn-success">
-              <i class="fa-solid fa-save"></i> Lưu thay đổi
-            </button>
-            <a href="users.html" class="btn btn-secondary">
-              <i class="fa-solid fa-arrow-left"></i> Quay lại
-            </a>
-          </div>
-        </form>
+  <div class="mt-4">
+    <button type="submit" class="btn btn-success">
+      <i class="fa-solid fa-save"></i> Lưu thay đổi
+    </button>
+    <a href="/admin/user" class="btn btn-secondary">
+      <i class="fa-solid fa-arrow-left"></i> Quay lại
+    </a>
+  </div>
+</form>
       </div>
     </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+</script>
+<script>
+function checkPasswordMatch() {
+  let pass = document.getElementById("new_password").value;
+  let confirm = document.getElementById("confirm_password").value;
+  let errorDiv = document.getElementById("passwordError");
+
+  if (pass !== "" || confirm !== "") {
+    if (pass !== confirm) {
+      errorDiv.style.display = "block"; // Hiện cảnh báo
+      return false; // Ngăn submit
+    } else {
+      errorDiv.style.display = "none"; // Ẩn cảnh báo nếu khớp
+    }
+  }
+  return true;
+}
+</script>
 {% endblock %}

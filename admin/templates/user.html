@@ -34,281 +34,66 @@
                 <th>ID</th>
                 <th>Tên</th>
                 <th>Email</th>
-                <th>Quyền</th>
+                <th>Ngày sinh</th>
+                <th>Giới tính</th>
                 <th>Hành động</th>
               </tr>
             </thead>
             <tbody>
+            {% for user in users %}
               <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.birthday|date:"d/m/Y" }}</td>
                 <td>
-                  <button class="btn btn-sm btn-warning">
+      {% if user.gender == "F" %}
+        Nữ
+      {% elif user.gender == "M" %}
+        Nam
+      {% else %}
+        Khác
+      {% endif %}
+    </td>
+                <td>
+                  <a href="/admin/update_user/{{user.id}}" class="btn btn-sm btn-warning">
                     <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
+                  </a>
+                  <button class="btn btn-sm btn-danger"
+                onclick="showConfirmModal('{{user.id}}','{{user.email}}')">
+          <i class="fa-solid fa-trash"></i>
+        </button>
                 </td>
               </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>Nguyễn Văn A</td>
-                <td>a@example.com</td>
-                <td>User</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Admin</td>
-                <td>admin@example.com</td>
-                <td>Admin</td>
-                <td>
-                  <button class="btn btn-sm btn-warning">
-                    <i class="fa-solid fa-pen"></i>
-                  </button>
-                  <button class="btn btn-sm btn-danger">
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
-              </tr>
-              <!-- Thêm nhiều user khác -->
+            {% endfor %}
             </tbody>
           </table>
+            <div id="confirmModal" style="display:none;
+     position:fixed; top:0; left:0; right:0; bottom:0;
+     background:rgba(0,0,0,0.5);
+     justify-content:center; align-items:center; z-index:9999;">
+  <div style="background:#fff; padding:20px; border-radius:8px; width:350px; text-align:center;">
+    <h5>⚠️ Xác nhận xoá</h5>
+    <p id="confirmText"></p>
+    <div style="margin-top:15px;">
+      <button class="btn btn-secondary" onclick="closeConfirmModal()">Huỷ</button>
+      <a id="confirmDeleteBtn" class="btn btn-danger">Xoá</a>
+    </div>
+  </div>
+</div>
         </div>
       </div>
     </div>
+<script>
+  function showConfirmModal(id, email) {
+    document.getElementById("confirmText").innerText =
+      "Bạn có chắc chắn muốn xoá người dùng: " + email + " ?";
+    document.getElementById("confirmDeleteBtn").href = "/admin/delete_user/" + id;
+    document.getElementById("confirmModal").style.display = "flex";
+  }
+
+  function closeConfirmModal() {
+    document.getElementById("confirmModal").style.display = "none";
+  }
+</script>
 {% endblock %}

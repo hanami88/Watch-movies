@@ -1,22 +1,17 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from movies.models import Movie
+from users.models import Users
 from django.utils.text import slugify
-def addphim_page(request):
-    movies = Movie.objects.all()
-    context={
-        'movies':movies,
-    }
-    return render(request, "addphim_page.html",context)
-def changepassword_page(request):
-    return render(request, "changepassword_page.html")
-def update_user_page(request):
-    return render(request, "update_user_page.html")
-def user(request):
-    return render(request, "user.html")
-def update_phim_page(request):
-    return render(request, "update_phim_page.html")
-
 from datetime import datetime
+from django.contrib import messages
+def changepassword(request):
+    return render(request, "changepassword_page.html")
+def user(request):
+    users= Users.objects.all()
+    context={
+        'users':users,
+    }
+    return render(request, "user.html",context)
 
 def addphim(request):
     if request.method == "POST":
@@ -47,16 +42,12 @@ def addphim(request):
         movie.save()
 
         return redirect(request.META.get("HTTP_REFERER", "/"))
-
-def update_phim_page(request, slug):
-    movie = get_object_or_404(Movie, slug=slug)
-    context = {
-        'movie': movie,
-    }
-    return render(request, "update_phim_page.html", context)
-
-
-from datetime import datetime
+    else:
+        movies = Movie.objects.all()
+        context = {
+            'movies': movies,
+        }
+        return render(request, "addphim_page.html", context)
 
 def update_phim(request, slug):
     movie = get_object_or_404(Movie, slug=slug)
@@ -83,10 +74,45 @@ def update_phim(request, slug):
         movie.slug = slugify(f"{movie.title}-{year}")
 
         movie.save()
-        return redirect("/admin/addphim_page")
+        return redirect("/admin/addphim")
+    else:
+        context = {
+            'movie': movie,
+        }
+        return render(request, "update_phim_page.html", context)
 
 def delete_phim(request, slug):
     movie = get_object_or_404(Movie, slug=slug)
     movie.delete()
     # Sau khi xoá thì quay lại danh sách phim hoặc trang admin
-    return redirect("/admin/addphim_page")
+    return redirect("/admin/addphim")
+
+def delete_user(request, id):
+    user = get_object_or_404(Users, id=id)
+    user.delete()
+    return redirect("/admin/user")
+def update_user(request, id):
+    user = get_object_or_404(Users, id=id)
+    if request.method == "POST":
+        # Lấy dữ liệu form
+        name = request.POST.get("name")
+        email = request.POST.get("email")
+        birthday = request.POST.get("birthday")
+        gender = request.POST.get("gender")
+        new_password = request.POST.get("new_password")
+        confirm_password = request.POST.get("confirm_password")
+
+        user.name = name
+        user.email = email
+        user.birthday = birthday
+        user.gender = gender
+        if new_password:
+            if new_password == confirm_password:
+                user.password = new_password
+                messages.success(request, "Đổi mật khẩu thành công!")
+            else:
+                messages.error(request, "Mật khẩu xác nhận không khớp!")
+        user.save()
+        return redirect("/admin/user")
+
+    return render(request, "update_user_page.html", {"user": user})
