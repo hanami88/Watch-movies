@@ -16,13 +16,13 @@
 </iframe>
 <div class="FULLHD" style="display:flex;witdh:88vw;justify-content:space-between;">
     <span>#FULL HD 1</span>
- <button class="btn-like" data-movie="{{ movie.id }}">
+ <button class="btn-like" data-slug="{{ movie.slug }}">
   {% if movie in user_favorites %}
     <i class="bi bi-heart-fill"></i> Bỏ thích
   {% else %}
     <i class="bi bi-heart"></i> Thích
   {% endif %}
-  </button>
+</button>
   <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
 </div>
 <div style="width: 93vw;margin-top: 2rem;">
@@ -94,17 +94,19 @@
 document.querySelectorAll('.btn-like').forEach(btn => {
     btn.addEventListener('click', function(e) {
         e.preventDefault();
-        const movieId = this.dataset.movie;
+        const movieSlug = this.dataset.slug; // Đổi từ movie sang slug
         const csrftoken = document.getElementById('csrf-token').value;
         const button = this;
-        fetch("/xemphim/thich", {
+
+        // Cập nhật URL để sử dụng slug
+        fetch(`/xemphim/${movieSlug}/thich/`, {
             method: 'POST',
             headers: {
                 'X-CSRFToken': csrftoken,
                 'X-Requested-With': 'XMLHttpRequest',
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: new URLSearchParams({movie_id: movieId})
+            body: new URLSearchParams({movie_slug: movieSlug}) // Đổi từ movie_id sang movie_slug
         })
         .then(response => {
             console.log('Response status:', response.status);
@@ -113,7 +115,6 @@ document.querySelectorAll('.btn-like').forEach(btn => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-
             // Kiểm tra content-type
             const contentType = response.headers.get('content-type');
             if (!contentType || !contentType.includes('application/json')) {

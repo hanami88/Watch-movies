@@ -14,6 +14,9 @@ def user(request):
     return render(request, "user.html",context)
 
 def addphim(request):
+    print(f"DEBUG - User ID: {request.session.get('user_id')}")
+    print(f"DEBUG - Is superuser: {request.session.get('is_superuser')}")
+    print(f"DEBUG - Current URL: {request.path}")
     if request.method == "POST":
         title = request.POST.get("title")
         titleE = request.POST.get("titleE")

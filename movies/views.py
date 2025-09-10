@@ -19,20 +19,22 @@ def xemphim(request, slug):
     context = {
         'movies': movies,
         'movie': movie,
-        'user': getattr(request, "user_custom", None),
         'user_favorites': user_favorites,
         'comments':comments,
     }
     return render(request, 'xemphim.html', context)
 
 
-def thich(request):
+def thich(request, slug):
     if request.method == "POST" and request.headers.get("x-requested-with") == "XMLHttpRequest":
-        movie_id = request.POST.get("movie_id")
-        if not movie_id:
-            return JsonResponse({"error": "Thiếu movie_id"}, status=400)
+        movie_slug = request.POST.get("movie_slug")  # Đổi từ movie_id sang movie_slug
+
+        # Kiểm tra movie_slug từ POST data hoặc sử dụng slug từ URL
+        if not movie_slug:
+            movie_slug = slug  # Sử dụng slug từ URL nếu không có trong POST data
+
         try:
-            movie = get_object_or_404(Movie, id=movie_id)
+            movie = get_object_or_404(Movie, slug=movie_slug)  # Tìm theo slug thay vì id
         except Exception as e:
             return JsonResponse({"error": f"Không tìm thấy phim: {str(e)}"}, status=404)
 

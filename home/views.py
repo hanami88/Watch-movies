@@ -11,8 +11,7 @@ def get_home(request):
     movies_list = movie.objects.all().order_by('-views')[:10]
     context = {
         "movies": movies,
-        "user": getattr(request, "user_custom", None),
-        "movies_list":movies_list,
+        "movies_list": movies_list,
     }
     return render(request, "home.html", context)
 
