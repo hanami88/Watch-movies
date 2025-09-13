@@ -16,15 +16,15 @@
 </iframe>
 <div class="FULLHD" style="display:flex;witdh:88vw;justify-content:space-between;">
     <span>#FULL HD 1</span>
- <button class="btn-like" data-slug="{{ movie.slug }}">
-  {% if movie in user_favorites %}
-    <i class="bi bi-heart-fill"></i> Bỏ thích
-  {% else %}
-    <i class="bi bi-heart"></i> Thích
-  {% endif %}
+    <button class="btn-like" data-slug="{{ movie.slug }}">
+    {% if is_liked %}
+        <i class="bi bi-heart-fill"></i> Bỏ thích
+    {% else %}
+        <i class="bi bi-heart"></i> Thích
+    {% endif %}
 </button>
-  <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
 </div>
+
 <div style="width: 93vw;margin-top: 2rem;">
     <div style="font-weight: 600; font-weight: 500;font-size: 1.3rem;color:white">Danh sách tập phim</div>
 </div>
@@ -88,73 +88,85 @@
   <i class="fa-solid fa-circle-play" style="color: #FFD43B;"></i>
 </div>
 {% endfor %}
+</div>
+</div>
 
-</div></div>
 <script>
-document.querySelectorAll('.btn-like').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const movieSlug = this.dataset.slug; // Đổi từ movie sang slug
-        const csrftoken = document.getElementById('csrf-token').value;
-        const button = this;
+document.addEventListener('DOMContentLoaded', function() {
+    // Like button functionality
+    const likeButtons = document.querySelectorAll('.btn-like');
 
-        // Cập nhật URL để sử dụng slug
-        fetch(`/xemphim/${movieSlug}/thich/`, {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': csrftoken,
-                'X-Requested-With': 'XMLHttpRequest',
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({movie_slug: movieSlug}) // Đổi từ movie_id sang movie_slug
-        })
-        .then(response => {
-            console.log('Response status:', response.status);
-            console.log('Response headers:', response.headers.get('content-type'));
+    likeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const slug = this.dataset.slug;
+            const url = `/xemphim/${slug}/thich`;
 
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            // Kiểm tra content-type
-            const contentType = response.headers.get('content-type');
-            if (!contentType || !contentType.includes('application/json')) {
-                return response.text().then(text => {
-                    console.log('Server trả về HTML thay vì JSON:', text);
-                    throw new Error('Server không trả về JSON');
-                });
+            // Disable button để tránh spam click
+            this.disabled = true;
+
+            // Lấy CSRF token từ cookie
+            function getCsrfToken() {
+                const cookies = document.cookie.split(';');
+                for (let cookie of cookies) {
+                    const [name, value] = cookie.trim().split('=');
+                    if (name === 'csrftoken') {
+                        return value;
+                    }
+                }
+                return '';
             }
 
-            return response.json();
-        })
-        .then(data => {
-            console.log('Success:', data);
-            if (data.error) {
-                alert(data.error);
-                return;
-            }
-            if (data.liked) {
-                button.innerHTML = '<i class="bi bi-heart-fill"></i> Bỏ thích';
-                button.classList.add('liked');
-            } else {
-                button.innerHTML = '<i class="bi bi-heart"></i> Thích';
-                button.classList.remove('liked');
-            }
-        })
-        .catch(err => {
-            console.error('Fetch error:', err);
-            alert('Có lỗi xảy ra: ' + err.message);
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCsrfToken()
+                },
+                body: JSON.stringify({
+                    'action': 'toggle_like'
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    updateLikeButton(this, data.liked);
+                } else {
+                    console.log('Lỗi:', data);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            })
+            .finally(() => {
+                // Enable lại button
+                this.disabled = false;
+            });
         });
     });
-});
-    document.addEventListener("DOMContentLoaded", function () {
+
+    // Hàm cập nhật giao diện button
+    function updateLikeButton(button, isLiked) {
+        if (isLiked) {
+            button.innerHTML = '<i class="bi bi-heart-fill"></i> Bỏ thích';
+        } else {
+            button.innerHTML = '<i class="bi bi-heart"></i> Thích';
+        }
+    }
+
+    // Comment functionality
     const textarea = document.getElementById("comment");
     const submitBtn = document.querySelector(".form-comment .btn-submit");
-
-    // Lắng nghe sự kiện gõ phím
-    textarea.addEventListener("input", function () {
-      submitBtn.disabled = textarea.value.trim().length === 0;
-    });
-  });
+    if (textarea && submitBtn) {
+        textarea.addEventListener("input", function () {
+            submitBtn.disabled = textarea.value.trim().length === 0;
+        });
+    }
+});
 </script>
 
 {% endblock %}

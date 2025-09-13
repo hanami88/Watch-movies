@@ -1,8 +1,7 @@
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.deprecation import MiddlewareMixin
-
-
+from users.models import Users
 class AuthenticationMiddleware(MiddlewareMixin):
     """
     Middleware xử lý xác thực và phân quyền người dùng
@@ -32,38 +31,14 @@ class AuthenticationMiddleware(MiddlewareMixin):
         '/xemphim/<slug:slug>/comment',
     ]
 
-    def process_request(self, request):
-        current_url = request.path
-        # Bỏ qua kiểm tra cho các URL trong danh sách exempt
-        if self.is_exempt_url(current_url):
-            return None
-
-        # Kiểm tra xem user đã đăng nhập chưa
-        user_id = request.session.get('user_id')
-        is_superuser = request.session.get('is_superuser', False)
-
-        if not user_id:
-            return redirect('/login')
-
-        # Kiểm tra quyền truy cập admin
-        if self.is_admin_required_url(current_url):
-            if not is_superuser:
-                return redirect('/')
-        return None
-
     def is_exempt_url(self, url):
         """
         Kiểm tra xem URL có được miễn kiểm tra không
         """
         for exempt_url in self.EXEMPT_URLS:
-            # ✅ SỬA LOGIC NÀY
-            if url == exempt_url or (exempt_url.endswith('/') and url.startswith(exempt_url)):
-                # Chỉ accept exact match hoặc startswith cho các URL có dấu /
-                if exempt_url == '/' and url != '/':
-                    continue  # Trang chủ phải exact match
+            if url == exempt_url:
                 return True
-
-        if url.startswith('/xemphim/') and len(url.split('/')) >= 3:
+        if url.startswith('/xemphim/') and len(url.split('/')) <=2:
             return True  # /xemphim/slug/ hoặc /xemphim/slug/comment/
         return False
 
@@ -84,3 +59,36 @@ class AuthenticationMiddleware(MiddlewareMixin):
             if url.startswith(user_url):
                 return True
         return False
+
+    def process_request(self, request):
+        current_url = request.path
+        # Bỏ qua kiểm tra cho các URL trong danh sách exempt
+        # Kiểm tra xem user đã đăng nhập chưa
+        user_id = request.session.get('user_id')
+        is_superuser = request.session.get('is_superuser', False)
+        if self.is_exempt_url(current_url):
+            if not is_superuser:
+                return None
+            else:
+                return redirect('/admin/addphim')
+
+        try:
+            user = Users.objects.get(id=user_id)
+            request.user = user  # ĐÂY RỒI!
+        except Users.DoesNotExist:
+            request.session.flush()
+            return redirect('/login')
+
+        # Kiểm tra quyền truy cập admin
+        if self.is_admin_required_url(current_url):
+            if not is_superuser:
+                return redirect('/')
+
+        # Kiểm tra URL chỉ dành cho user thường (admin bị cấm)
+        if self.is_user_only_url(current_url):
+            if is_superuser==1:
+                return redirect('/admin/addphim')
+            elif not is_superuser==0:
+                return redirect('/')
+        return None
+
