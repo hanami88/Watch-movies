@@ -35,8 +35,7 @@
   <label class="btn btn-outline-warning" for="option3">Phim lẻ</label>
 </div>
        <div class="chuaphim">
-           {% for movie in movies %}
-           {% if movie.type == "HD" %}
+           {% for movie in movies|slice:":10" %}
            <a href="/xemphim/{{movie.slug}}" style="text-decoration: none;" class="thephimnoi item">
           <div class="card" style="width: 12rem; border:none;background-color:black">
             <img src="{{movie.poster_url}}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">
@@ -49,7 +48,6 @@
           </div>
           <i class="fa-solid fa-circle-play" style="color: #FFD43B;"></i>
           </a>
-           {% endif %}
            {% endfor %}
        </div>
     </div>
@@ -73,7 +71,7 @@
     <div class="container-chuaphim">
        <div class="chuaphim">
          {% for movie in movies %}
-           {% if movie.type == "HD" %}
+           {% if movie.type == "1" %}
            <a href="/xemphim/{{movie.slug}}" style="text-decoration: none;" class="thephimnoi item">
           <div class="card" style="width: 12rem; border:none;background-color:black">
             <img src="{{movie.poster_url}}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">
@@ -161,7 +159,7 @@
     <div class="container-chuaphim">
        <div class="chuaphim">
          {% for movie in movies %}
-           {% if movie.type == "HH" %}
+           {% if movie.type == "4" %}
            <a href="/xemphim/{{movie.slug}}" style="text-decoration: none;" class="thephimnoi item">
           <div class="card" style="width: 12rem; border:none;background-color:black">
             <img src="{{movie.poster_url}}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">

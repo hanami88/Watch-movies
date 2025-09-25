@@ -65,10 +65,10 @@
   <div class="mb-3">
   <label class="form-label">Loại phim</label>
   <select class="form-select" name="category">
-    <option value="1" {% if movie.type == 1 %}selected{% endif %}>Hành động</option>
-    <option value="2" {% if movie.type == 2 %}selected{% endif %}>Tình cảm</option>
-    <option value="3" {% if movie.type == 3 %}selected{% endif %}>Kinh dị</option>
-    <option value="4" {% if movie.type == 4 %}selected{% endif %}>Hoạt hình</option>
+    <option value="1" {% if movie.type == "1" %}selected{% endif %}>Hành động</option>
+    <option value="2" {% if movie.type == "2" %}selected{% endif %}>Tình cảm</option>
+    <option value="3" {% if movie.type == "3" %}selected{% endif %}>Kinh dị</option>
+    <option value="4" {% if movie.type == "4" %}selected{% endif %}>Hoạt hình</option>
   </select>
 </div>
           <div class="mt-4">
