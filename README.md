@@ -42,21 +42,24 @@ GPT (for movie recommendations / smart search)
 
 ## 🖼️ User Interface Preview
 ### 🏠 Home Page
-<img width="1436" height="690" alt="image" src="https://github.com/user-attachments/assets/ede7bbf1-373e-4bd3-9ec8-4e615e8445ef" />
-<img width="1437" height="686" alt="image" src="https://github.com/user-attachments/assets/ae43e760-378e-49e1-90a8-b9d3db947609" />
-<img width="1436" height="689" alt="image" src="https://github.com/user-attachments/assets/e1e53285-5ee9-4811-8df2-eb955d5a4186" />
-<img width="1437" height="689" alt="image" src="https://github.com/user-attachments/assets/c0f48160-4f3a-48fc-a8c1-72abadcf3066" />
+<img width="1436" height="688" alt="image" src="https://github.com/user-attachments/assets/0d7828a3-099c-4400-9c50-51d973a1d786" />
+<img width="1428" height="688" alt="image" src="https://github.com/user-attachments/assets/fb0a0cfa-b766-47e4-b557-22578d057e12" />
+<img width="1436" height="685" alt="image" src="https://github.com/user-attachments/assets/4bb82f8d-50fb-463b-9748-e53b9bcc7624" />
+<img width="1436" height="693" alt="image" src="https://github.com/user-attachments/assets/5d471f7a-cfef-4af7-ac84-2b0601ae7b89" />
+<img width="1433" height="686" alt="image" src="https://github.com/user-attachments/assets/e7d39455-75f7-464e-854c-a60d1d1303dd" />
 
 ### 🔐 Login Page
 <img width="1437" height="688" alt="image" src="https://github.com/user-attachments/assets/81668518-835f-4c9c-882d-def7469e36eb" />
 
 ### 🙍‍♂️ User Profile Management
 After logging in, users can access their profile to update personal information and favorite film.
+
 <img width="1436" height="688" alt="image" src="https://github.com/user-attachments/assets/aa332b09-8660-4c54-8d6f-d7509037ea21" />
 
 Users can watch movies, comment, and like.
-<img width="1439" height="688" alt="image" src="https://github.com/user-attachments/assets/6b109312-b194-441e-be0c-a5cdd2430835" />
-<img width="1435" height="688" alt="image" src="https://github.com/user-attachments/assets/3a837919-f1b2-4d1b-ba79-49fcfff2ae97" />
+
+<img width="1435" height="690" alt="image" src="https://github.com/user-attachments/assets/06678baa-f657-4f5a-a943-3035cc05cd13" />
+<img width="1435" height="688" alt="image" src="https://github.com/user-attachments/assets/7bb3dba9-c976-4b88-a068-99571b2781fe" />
 
 ### 👨‍💼 Admin Features
 - Add and edit users
