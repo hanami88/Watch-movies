@@ -1,4 +1,4 @@
-🎬 Watch Movies
+##🎬 Watch Movies
 This is an online movie streaming platform that lets users search and watch movies, create playlists, and track history. Admins can manage movies, categories, and monitor user activity to ensure a smooth streaming experience.
 
 ⏱️ Duration: 15 days (from planning to deployment)
