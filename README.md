@@ -43,10 +43,10 @@ GPT (for movie recommendations / smart search)
 ## 🖼️ User Interface Preview
 ### 🏠 Home Page
 <img width="1436" height="688" alt="image" src="https://github.com/user-attachments/assets/0d7828a3-099c-4400-9c50-51d973a1d786" />
-<img width="1428" height="688" alt="image" src="https://github.com/user-attachments/assets/fb0a0cfa-b766-47e4-b557-22578d057e12" />
-<img width="1436" height="685" alt="image" src="https://github.com/user-attachments/assets/4bb82f8d-50fb-463b-9748-e53b9bcc7624" />
-<img width="1436" height="693" alt="image" src="https://github.com/user-attachments/assets/5d471f7a-cfef-4af7-ac84-2b0601ae7b89" />
-<img width="1433" height="686" alt="image" src="https://github.com/user-attachments/assets/e7d39455-75f7-464e-854c-a60d1d1303dd" />
+<img width="1439" height="630" alt="image" src="https://github.com/user-attachments/assets/80078576-951e-4cf8-a156-5a7ce6aa1685" />
+<img width="1436" height="635" alt="image" src="https://github.com/user-attachments/assets/7d42ded0-a575-4e2f-9231-74f94f57cf46" />
+<img width="1437" height="631" alt="image" src="https://github.com/user-attachments/assets/cc6954c0-ae77-4c25-857d-3b77fa9cd1a6" />
+<img width="1438" height="625" alt="image" src="https://github.com/user-attachments/assets/0a76f3a3-39fa-46e5-a91f-3d1dfac8d961" />
 
 ### 🔐 Login Page
 <img width="1437" height="688" alt="image" src="https://github.com/user-attachments/assets/81668518-835f-4c9c-882d-def7469e36eb" />
