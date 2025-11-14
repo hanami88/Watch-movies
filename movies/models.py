@@ -4,7 +4,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=255)
     titleE = models.CharField(max_length=255,default="No Title")   # tên phim
     summary = models.TextField(blank=True, null=True)    # tóm tắt
-    poster_url = models.URLField(blank=True, null=True)  # link poster
+    poster_url = models.CharField(max_length=255,null=True)  #  poster
     video_url = models.CharField(max_length=255)   # link video/stream
     release_date = models.DateField(blank=True, null=True)  # ngày phát hành
     created_at = models.DateTimeField(auto_now_add=True)    # tạo lúc nào
@@ -13,7 +13,7 @@ class Movie(models.Model):
     nomination = models.BooleanField(default=False)
     type=models.CharField(max_length=255,default="No Title")
     slug = models.SlugField(unique=True, blank=True, null=True, max_length=255)
-
+    series = models.CharField(max_length=200, blank=True, null=True)
     def save(self, *args, **kwargs):
         if not self.slug:
             year = self.release_date.year if self.release_date else ""

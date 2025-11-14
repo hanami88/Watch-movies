@@ -4,6 +4,8 @@ from users.models import Users
 from django.utils.text import slugify
 from datetime import datetime
 from django.contrib import messages
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 def changepassword(request):
     return render(request, "changepassword_page.html")
 def user(request):
@@ -25,7 +27,7 @@ def addphim(request):
         video_url = request.POST.get("video_url")
         release_date_str = request.POST.get("release_date")
         type_value = request.POST.get("type")
-
+        series_value = request.POST.get("series")
         release_date = None
         if release_date_str:
             try:
@@ -41,6 +43,7 @@ def addphim(request):
             video_url=video_url,
             release_date=release_date,
             type=type_value or "No Title",
+            series=series_value,
         )
         movie.save()
 
@@ -89,7 +92,9 @@ def delete_phim(request, slug):
     movie.delete()
     # Sau khi xoá thì quay lại danh sách phim hoặc trang admin
     return redirect("/admin/addphim")
-
+def dangxuat(request):
+    logout(request)  # Tự động xóa session và cookie
+    return redirect('/login')  # Chuyển về trang chủ hoặc trang login
 def delete_user(request, id):
     user = get_object_or_404(Users, id=id)
     user.delete()

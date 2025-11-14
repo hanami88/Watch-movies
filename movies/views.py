@@ -5,15 +5,21 @@ from .models import Movie
 from django.http import JsonResponse
 from django.contrib import messages
 from users.models import UsersCommentMovies
-
-
+from django.db.models import Q, Case, When, IntegerField
 def xemphim(request, slug):
     movie = get_object_or_404(Movie, slug=slug)
     comments = UsersCommentMovies.objects.filter(movie=movie).select_related("user")
-    movies = Movie.objects.all()
+    movies = Movie.objects.filter(
+        Q(series=movie.series) | Q(type=movie.type)
+    ).exclude(id=movie.id).order_by(
+        Case(
+            When(series=movie.series, then=0),
+            default=1,
+            output_field=IntegerField()
+        )
+    )
     movie.views += 1
     movie.save(update_fields=["views"])
-
     is_liked = False
     if getattr(request, "user", None):
         is_liked = UsersFavoriteMovies.objects.filter(

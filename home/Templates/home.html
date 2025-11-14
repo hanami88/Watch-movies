@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block title %}Trang chủ{% endblock %}
 
 {% block content %}
@@ -9,8 +9,7 @@
     <div class="item">
   <a href="/xemphim/{{movie.slug}}" style="text-decoration: none;" class="achuaphim">
     <div class="card" style="width: 12rem; border:none;background-color:black">
-      <img src="{{ movie.poster_url }}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">
-      <div class="HD">HD</div>
+<img src="{% static 'home/image/' %}{{ movie.poster_url }}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">      <div class="HD">HD</div>
       <div class="vietsub">Vietsub</div>
       <div class="card-body">
         <p class="card-text" style="margin-top:-0.8rem;font-size:0.9rem;margin-left:-1rem; color:white; font-weight:500;">{{ movie.title }}</p>
@@ -38,7 +37,7 @@
            {% for movie in movies|slice:":10" %}
            <a href="/xemphim/{{movie.slug}}" style="text-decoration: none;" class="thephimnoi item">
           <div class="card" style="width: 12rem; border:none;background-color:black">
-            <img src="{{movie.poster_url}}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">
+<img src="{% static 'home/image/' %}{{ movie.poster_url }}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">      <div class="HD">HD</div>
             <div class="HD">HD</div>
             <div class="vietsub">Vietsub</div>
             <div class="card-body">
@@ -74,7 +73,7 @@
            {% if movie.type == "1" %}
            <a href="/xemphim/{{movie.slug}}" style="text-decoration: none;" class="thephimnoi item">
           <div class="card" style="width: 12rem; border:none;background-color:black">
-            <img src="{{movie.poster_url}}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">
+<img src="{% static 'home/image/' %}{{ movie.poster_url }}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">      <div class="HD">HD</div>
             <div class="HD">HD</div>
             <div class="vietsub">Vietsub</div>
             <div class="card-body">
@@ -91,66 +90,15 @@
   <div class="bangxephang">
   <h2 class="text-warning mb-3" style="font-size: 1.2rem;font-weight: 600;width: 18rem;margin-top: 1rem;margin-left: 1rem ;border-bottom: 1px dotted gray; padding-bottom: 1rem;">ĐÁNH GIÁ CAO</h2>
   <div class="list-group">
+    {% for movie in movies_list %}
     <div class="bangxephang-item">
-      <div>1</div>
+      <div>{{ forloop.counter }}</div>
       <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
+        <div>{{ movie.title }}</div>
+        <div>{{ movie.views }} lượt xem</div>
       </div>
     </div>
-    <div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div>
-
-    <div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div>
-    <div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div>
-    <div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div><div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div><div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div><div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div><div class="bangxephang-item">
-      <div>1</div>
-      <div class="bangxephang-item-box">
-        <div>Cẩm Như Nguyệt Ca</div>
-        <div>100,000 lượt xem</div>
-      </div>
-    </div>
+    {% endfor %}
   </div>
 </div>
 </div>
@@ -162,7 +110,7 @@
            {% if movie.type == "4" %}
            <a href="/xemphim/{{movie.slug}}" style="text-decoration: none;" class="thephimnoi item">
           <div class="card" style="width: 12rem; border:none;background-color:black">
-            <img src="{{movie.poster_url}}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">
+<img src="{% static 'home/image/' %}{{ movie.poster_url }}" style="border-radius:0.5rem" class="card-img-top imghover" alt="...">      <div class="HD">HD</div>
             <div class="HD">HD</div>
             <div class="vietsub">Vietsub</div>
             <div class="card-body">

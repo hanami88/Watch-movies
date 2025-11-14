@@ -95,8 +95,12 @@
             <textarea class="form-control" rows="3" name="summary" id="summary"></textarea>
           </div>
           <div class="mb-3">
-            <label class="form-label">Poster URL</label>
-            <input type="text" class="form-control" placeholder="https://..." name="poster_url" id="poster_url"/>
+            <label class="form-label">Poster</label>
+            <input type="text" class="form-control"
+       placeholder="URL hoặc tên file"
+       name="poster_url"
+       id="poster_url"
+       novalidate/>
           </div>
           <div class="row">
             <div class="col-md-6 mb-3">
@@ -118,6 +122,10 @@
               <option value="4">Hoạt hình</option>
             </select>
           </div>
+           <div class="col-md-6 mb-3">
+              <label class="form-label">Series</label>
+              <input type="text" class="form-control" name="series" />
+           </div>
           <button type="submit" class="btn btn-primary">
             <i class="fa-solid fa-plus"></i> Thêm phim
           </button>
